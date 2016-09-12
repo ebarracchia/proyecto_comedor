@@ -1,7 +1,7 @@
 # proyecto_comedor #
-Proyecto OpenCV.
+Proyecto OpenCV para analizar cantidad de personas en cola de espera utilizando imagenes de una o varias camaras web.
 
-# Links #
+# LINKS #
 ## Git: How to use ##
 http://rogerdudler.github.io/git-guide/  
 
