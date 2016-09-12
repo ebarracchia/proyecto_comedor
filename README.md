@@ -59,6 +59,6 @@ To https://github.com/ebarracchia/proyecto_comedor.git
 ## How to remove directory from git and local ##
 You could checkout 'master' with both directories;  
 
-git rm -r {one-of-the-directories}  
-git commit -m "Remove duplicated directory"  
-git push origin <your-git-branch> (typically 'master', but not always)  
+**git rm -r {one-of-the-directories}**  
+**git commit -m "Remove duplicated directory"**  
+**git push origin <your-git-branch>** (typically 'master', but not always)  
