@@ -2,12 +2,12 @@
 Proyecto OpenCV.
 
 # Links #
-## Edit video ##  
+## Edit video ##
 https://solarianprogrammer.com/2015/06/04/opencv-video-editing-tutorial/  
 
 
-# GIT #  
-## How to clone ##  
+# GIT #
+## How to clone ##
 user@machine:~/Desarrollos$ git clone   https://github.com/ebarracchia/proyecto_comedor.git  
 Cloning into 'proyecto_comedor'...  
 remote: Counting objects: 3, done.  
