@@ -45,8 +45,8 @@ user@machine:~/Desarrollos/proyecto_comedor$ **git commit -m "Remover caracteres
 [master 53a09ac] Remover caracteres  
  1 file changed, 3 insertions(+), 3 deletions(-)  
 user@machine:~/Desarrollos/proyecto_comedor$ **git push origin master**  
-Username for 'https://github.com': ebarracchia  
-Password for 'https://ebarracchia@github.com':   
+Username for 'https://github.com': **ebarracchia**  
+Password for 'https://ebarracchia@github.com': **{password}**   
 Counting objects: 3, done.  
 Delta compression using up to 2 threads.  
 Compressing objects: 100% (2/2), done.  
