@@ -2,7 +2,10 @@
 Proyecto OpenCV.
 
 # Links #
-## Edit video ##
+## Git: How to ##
+http://rogerdudler.github.io/git-guide/  
+
+## Python & OpenCV: Edit video ##
 https://solarianprogrammer.com/2015/06/04/opencv-video-editing-tutorial/  
 
 
