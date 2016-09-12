@@ -55,3 +55,10 @@ Total 3 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local objects.  
 To https://github.com/ebarracchia/proyecto_comedor.git  
    e9b2480..53a09ac  master -> master  
+
+## How to remove directory from git and local ##
+You could checkout 'master' with both directories;  
+
+git rm -r {one-of-the-directories}  
+git commit -m "Remove duplicated directory"  
+git push origin <your-git-branch> (typically 'master', but not always)  
