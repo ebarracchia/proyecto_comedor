@@ -9,13 +9,13 @@ class QueueDetector():
     def onChange(self, val): #callback when the user change the detection threshold
         self.threshold = val
 
-    def __init__(self,threshold=25, doRecord=True, showWindows=True):
-        print "::QueueDetector init"
+    def __init__(self, threshold=25, doRecord=True, showWindows=True, doLog=True):
+        self.doRecord = doRecord    #Either or not record the moving object
+        self.show = showWindows     #Either or not show the 2 windows
+        self.doLog = doLog          #Either or not log to console
         self.writer = None
-        self.font = None
-        self.doRecord=doRecord #Either or not record the moving object
-        self.show = showWindows #Either or not show the 2 windows
         self.frame = None
+        self.Log("::QueueDetector init")
 
         self.capture = cv2.VideoCapture('Videos/simulacion_comedor.mp4')
         res, self.frame = self.capture.read() #Take a frame to init recorder
@@ -26,6 +26,9 @@ class QueueDetector():
         self.width = self.frame.shape[1]
         self.height = self.frame.shape[0]
         self.surface = self.width * self.height
+        self.Log("::Screen properties | Width: {width} - Heiht: {height}".format(width=self.width, height=self.height))
+        self.Log("::Screen properties | Surface: {surface}".format(surface=self.surface))
+
         self.currentsurface = 0
         self.avg = 0
         self.currentcontours = None
@@ -51,22 +54,25 @@ class QueueDetector():
             res, currentframe = self.capture.read()
             instant = time.time() #Get timestamp o the frame
 
+            cv2.rectangle(currentframe,(0,0),(self.width/3,self.height),(0,255,0),3)
+            cv2.rectangle(currentframe,(self.width/3,0),(self.width/3*2,self.height),(0,255,0),3)
+            cv2.rectangle(currentframe,(self.width/3*2,0),(self.width,self.height),(0,255,0),3)
             self.processImage(currentframe) #Process the image
 
             valor = self.somethingHasMoved()
             cv2.drawContours(currentframe, self.currentcontours, -1, (0, 0, 255), 2, -1)
-            cv2.putText(currentframe, "Current: " + str(self.avg), (25,100),self.font, 1,(255,255,255),2)
+            cv2.putText(currentframe, "Current: {value}".format(value=int(self.avg)), (5,30),self.font, 1,(255,255,255),1)
 
             if not self.isRecording:
                 if valor:
                     self.trigger_time = instant #Update the trigger_time
                     if instant > started +10: #Wait 5 second after the webcam start for luminosity adjusting etc..
-                        print "::Something is moving (%s)!", (instant)
+                        self.Log("::Something is moving!")
                         if self.doRecord: #set isRecording=True only if we record a video
                             self.isRecording = True
             else:
                 if instant >= self.trigger_time +10: #Record during 10 seconds
-                    print "::Stop recording"
+                    self.Log("::Stop recording")
                     self.isRecording = False
                 else:
                     cv2.putText(currentframe,datetime.now().strftime("%b %d, %H:%M:%S"), (25,30),self.font, 1,(255,255,255),2) #Put date on the frame
@@ -123,8 +129,14 @@ class QueueDetector():
         else:
             return False
 
+    def Log(self, text):
+        if self.doLog:
+            print text
+
 if __name__=="__main__":
     print "Main: Starting analysis..."
+
+    #Start detector
     detect = QueueDetector(doRecord=False)
     detect.run()
 
